@@ -1,11 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Header } from "../components";
 
 export default function Home() {
         return (
                 <div>
-                        <h1>Home Layout </h1>
-                        <Outlet />
+                        <Header />
+                        <section className="align-element py-20">
+                                <Outlet />
+                        </section>
                 </div>
         );
 }
