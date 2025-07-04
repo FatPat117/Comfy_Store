@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { NavLinks } from "../components";
+
 export default function Navbar() {
-        const [theme, setTheme] = useState(false);
+        const [theme, setTheme] = useState(localStorage.getItem("theme") || "winter");
 
         const ToggleTheme = () => {
-                setTheme(!theme);
+                setTheme(theme === "winter" ? "dracula" : "winter");
         };
+
+        useEffect(() => {
+                localStorage.setItem("theme", theme);
+                document.documentElement.setAttribute("data-theme", theme);
+        }, [theme]);
 
         return (
                 <nav className="bg-base-200 max-w-full">
