@@ -1,5 +1,10 @@
 import React from "react";
+import { Hero } from "../components";
 
 export default function Landing() {
-        return <h1>Landing </h1>;
+        return (
+                <section>
+                        <Hero />
+                </section>
+        );
 }
