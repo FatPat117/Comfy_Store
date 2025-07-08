@@ -7,7 +7,6 @@ export default function ProductsGrid() {
         return (
                 <div className="pt-12 gap-6 grid md:grid-cols-2 lg:grid-cols-3">
                         {products.map((product) => {
-                                console.log(product);
                                 return (
                                         <Link
                                                 to={`/products/${product.id}`}
