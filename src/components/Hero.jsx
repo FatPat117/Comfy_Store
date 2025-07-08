@@ -33,10 +33,7 @@ export default function Hero() {
                                                 repellat explicabo enim soluta temporibus asperiores aut obcaecati
                                                 perferendis porro nobis.
                                         </p>
-                                        <Link
-                                                to="/products"
-                                                className="btn btn-primary p-6 text-xl text-primary-content mb-4 mt-5"
-                                        >
+                                        <Link to="/products" className="btn btn-primary p-6 text-xl mb-4 mt-5">
                                                 Our Products
                                         </Link>
                                 </div>
