@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { formatPrice } from "../utils";
 export default function ProductsGrid() {
         const { featuredProducts } = useLoaderData();
 
@@ -27,8 +28,8 @@ export default function ProductsGrid() {
                                                         {/* <p className="text-sm text-gray-500">
                                                                 {product.attributes.description}
                                                         </p> */}
-                                                        <p className="text-green-500 capitalize text-xl font-bold">
-                                                                ${product.attributes.price}
+                                                        <p className="text-secondary capitalize text-xl font-bold">
+                                                                {formatPrice(product.attributes.price)}
                                                         </p>
                                                 </div>
                                         </Link>
