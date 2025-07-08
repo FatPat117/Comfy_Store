@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Link, useLoaderData } from "react-router-dom";
 import FormInput from "./FormInput";
+import FormRange from "./FormRange";
 import FormSelect from "./FormSelect";
 
 export default function Filters() {
@@ -35,6 +36,8 @@ export default function Filters() {
                                 defaultValue="a-z"
                         />
 
+                        {/* Price */}
+                        <FormRange label="Price" name="price" size="range-sm" />
                         <button type="submit" className="btn btn-primary w-full text-xl">
                                 Search
                         </button>
