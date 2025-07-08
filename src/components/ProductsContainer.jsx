@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import { ProductsGrid, ProductsList } from ".";
 
 export default function ProductsContainer() {
-        const { products, meta } = useLoaderData();
+        const { meta } = useLoaderData();
         const totalProducts = meta.pagination.total;
 
         const [layout, setLayout] = useState("grid");
