@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { Filters, PaginationContainer, ProductContainer } from "../components";
+import { Filters, PaginationContainer, ProductsContainer } from "../components";
 import { customFetch } from "../utils";
 
 export default function Products() {
@@ -9,7 +9,7 @@ export default function Products() {
         return (
                 <>
                         <Filters />
-                        <ProductContainer />
+                        <ProductsContainer />
                         <PaginationContainer />
                 </>
         );

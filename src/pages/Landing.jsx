@@ -14,5 +14,5 @@ export default function Landing() {
 export const loader = async () => {
         const response = await customFetch.get("/products?featured=true");
 
-        return { featuredProducts: response.data.data };
+        return { products: response.data.data };
 };

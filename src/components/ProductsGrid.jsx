@@ -2,11 +2,11 @@ import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { formatPrice } from "../utils";
 export default function ProductsGrid() {
-        const { featuredProducts } = useLoaderData();
+        const { products } = useLoaderData();
 
         return (
                 <div className="pt-12 gap-6 grid md:grid-cols-2 lg:grid-cols-3">
-                        {featuredProducts.map((product) => {
+                        {products.map((product) => {
                                 console.log(product);
                                 return (
                                         <Link
