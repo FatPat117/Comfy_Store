@@ -16,8 +16,19 @@ export default function Products() {
 }
 
 export const loader = async ({ request }) => {
-        const response = await customFetch("/products");
+        const params = new URL(request.url).searchParams;
+        const query = Object.fromEntries(params.entries());
+
+        // const search = params.get("search") || "";
+        // const category = params.get("category") || "";
+        // const shipping = params.get("shipping") || "";
+        // const price = params.get("price") || "";
+        // const sort = params.get("sort") || "";
+        // const page = params.get("page") || 1;
+
+        const response = await customFetch.get("/products", { params: query });
         const products = response.data.data;
         const meta = response.data.meta;
-        return { products, meta };
+
+        return { products, meta, query };
 };
