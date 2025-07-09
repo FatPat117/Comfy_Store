@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Link, useLoaderData } from "react-router-dom";
+import FormCheckBox from "./FormCheckBox";
 import FormInput from "./FormInput";
 import FormRange from "./FormRange";
 import FormSelect from "./FormSelect";
@@ -38,9 +39,13 @@ export default function Filters() {
 
                         {/* Price */}
                         <FormRange label="Price" name="price" size="range-sm" />
+                        {/* Shipping */}
+                        <FormCheckBox label="Free Shipping" name="shipping" size="checkbox-sm" />
+
                         <button type="submit" className="btn btn-primary w-full text-xl">
                                 Search
                         </button>
+
                         <Link to="/products">
                                 <button className="btn btn-accent w-full text-xl">Reset</button>
                         </Link>
