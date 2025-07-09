@@ -42,6 +42,7 @@ export default function Filters() {
                         {/* Shipping */}
                         <FormCheckBox label="Free Shipping" name="shipping" size="checkbox-sm" />
 
+                        {/* Button  */}
                         <button type="submit" className="btn btn-primary w-full text-xl">
                                 Search
                         </button>
