@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { NavLinks } from "../components";
 
 export default function Navbar() {
+        const cart = useSelector((state) => state.cart);
+        const { numItemsInCart } = cart;
+
         const [theme, setTheme] = useState(localStorage.getItem("theme") || "winter");
 
         const ToggleTheme = () => {
@@ -60,7 +64,7 @@ export default function Navbar() {
                                                 <div className="indicator">
                                                         <FaShoppingCart className="h-6 w-6" />
                                                         <span className=" p-2 badge badge-xs badge-primary indicator-item text-[14px]">
-                                                                8
+                                                                {numItemsInCart}
                                                         </span>
                                                 </div>
                                         </NavLink>

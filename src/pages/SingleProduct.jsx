@@ -27,7 +27,7 @@ export default function SingleProduct() {
                 total: price * productAmount,
         };
         const handleAddToCart = () => {
-                dispatch(addItem(cartProduct));
+                dispatch(addItem({ product: cartProduct }));
         };
         return (
                 <section>
