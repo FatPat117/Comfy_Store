@@ -46,7 +46,7 @@ const cartSlice = createSlice({
                         cartSlice.caseReducers.calculateTotals(state);
 
                         localStorage.setItem("cart", JSON.stringify(state));
-                        toast.success("Item removed from cart");
+                        toast.error("Item removed from cart");
                 },
                 clearCart(state) {
                         localStorage.setItem("cart", JSON.stringify(defaultState));

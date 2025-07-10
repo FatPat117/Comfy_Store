@@ -1,4 +1,7 @@
 export { default as ErrorElement } from "../components/ErrorElement";
+export { default as CartItem } from "./CartItem";
+export { default as CartItemList } from "./CartItemList";
+export { default as CartTotal } from "./CartTotal";
 export { default as FeaturedProducts } from "./FeaturedProducts";
 export { default as Filters } from "./Filters";
 export { default as FormCheckBox } from "./FormCheckBox";
