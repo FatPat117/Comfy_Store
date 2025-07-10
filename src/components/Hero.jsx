@@ -14,7 +14,7 @@ export default function Hero() {
                                 <div className="hidden h-[29rem] lg:carousel carousel-center bg-neutral rounded-box  space-x-4 p-4 w-full">
                                         {heroImages.map((heroImg) => {
                                                 return (
-                                                        <div className="carousel-item">
+                                                        <div className="carousel-item" key={heroImg}>
                                                                 <img
                                                                         src={heroImg}
                                                                         alt="hero"
