@@ -1,15 +1,23 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 export default function PaginationContainer() {
         const { meta } = useLoaderData();
         const { pageCount, page: currentPage } = meta.pagination;
         const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
+        const { search, pathname } = useLocation();
+
+        const navigate = useNavigate();
+
+        const [searchParams, setSearchParams] = useSearchParams();
+
         if (pageCount < 2) return null;
 
         const handlePageChange = (page) => {
-                console.log(page);
+                const searchParams = new URLSearchParams(search);
+                searchParams.set("page", page);
+                navigate(`${pathname}?${searchParams.toString()}`);
         };
 
         return (
@@ -18,7 +26,11 @@ export default function PaginationContainer() {
                                 <div className="join">
                                         <button
                                                 className="btn btn-xs md:btn-md join-item"
-                                                onClick={() => handlePageChange(currentPage - 1)}
+                                                onClick={() => {
+                                                        let prevPage = currentPage - 1;
+                                                        if (prevPage < 1) prevPage = pageCount;
+                                                        handlePageChange(prevPage);
+                                                }}
                                         >
                                                 Prev
                                         </button>
@@ -37,7 +49,11 @@ export default function PaginationContainer() {
                                         ))}
                                         <button
                                                 className="btn btn-xs md:btn-md join-item"
-                                                onClick={() => handlePageChange(currentPage + 1)}
+                                                onClick={() => {
+                                                        let nextPage = currentPage + 1;
+                                                        if (nextPage > pageCount) nextPage = 1;
+                                                        handlePageChange(nextPage);
+                                                }}
                                         >
                                                 Next
                                         </button>
