@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useLoaderData } from "react-router-dom";
+import { addItem } from "../features/cart";
 import { customFetch, formatPrice } from "../utils";
-
 export default function SingleProduct() {
+        const dispatch = useDispatch();
         const { product } = useLoaderData();
         const { image, title, price, description, colors, company } = product.attributes;
 
@@ -14,6 +16,19 @@ export default function SingleProduct() {
                 setProductAmount(value);
         };
 
+        const cartProduct = {
+                cartId: product.id + productColor,
+                productID: product.id,
+                image: title,
+                price,
+                company,
+                color: productColor,
+                amount: productAmount,
+                total: price * productAmount,
+        };
+        const handleAddToCart = () => {
+                dispatch(addItem(cartProduct));
+        };
         return (
                 <section>
                         <div className="breadcrumbs -mt-9 text-md font-medium">
@@ -90,7 +105,9 @@ export default function SingleProduct() {
                                         </div>
                                         {/* Add to Cart */}
                                         <div className="mt-8">
-                                                <button className="btn btn-primary btn-lg">Add to Cart</button>
+                                                <button className="btn btn-primary btn-lg" onClick={handleAddToCart}>
+                                                        Add to Cart
+                                                </button>
                                         </div>
                                 </div>
                         </div>
