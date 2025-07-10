@@ -19,7 +19,8 @@ export default function SingleProduct() {
         const cartProduct = {
                 cartId: product.id + productColor,
                 productID: product.id,
-                image: title,
+                image,
+                title,
                 price,
                 company,
                 color: productColor,

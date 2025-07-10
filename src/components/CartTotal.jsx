@@ -10,17 +10,17 @@ export default function CartTotal() {
                 <div className="card bg-base-200">
                         <div className="card-body">
                                 {/* SUBTOTAL*/}
-                                <p className="flex justify-between text-xs md:text-md lg:text-[16px] border-b border-base-400 p-3 ">
+                                <p className="font-medium flex justify-between text-xs md:text-md lg:text-[16px] border-b border-base-400 p-3 ">
                                         <span>Subtotal</span>
                                         <span>{formatPrice(cartTotal)}</span>
                                 </p>
                                 {/* Shipping   */}
-                                <p className="flex justify-between text-xs md:text-md lg:text-[16px] border-b border-base-400 p-3 mt-2">
+                                <p className=" font-medium flex justify-between text-xs md:text-md lg:text-[16px] border-b border-base-400 p-3 mt-2">
                                         <span>Shipping</span>
                                         <span>{formatPrice(shipping)}</span>
                                 </p>
                                 {/* Tax    */}
-                                <p className="flex justify-between text-xs md:text-md lg:text-[16px] border-b border-base-400 p-3 mt-2">
+                                <p className=" font-medium flex justify-between text-xs md:text-md lg:text-[16px] border-b border-base-400 p-3 mt-2">
                                         <span>Tax</span>
                                         <span>{formatPrice(tax)}</span>
                                 </p>

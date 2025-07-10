@@ -36,13 +36,13 @@ const cartSlice = createSlice({
                         toast.success("Item added to cart");
                 },
                 removeItem(state, action) {
-                        const { cartID } = action.payload;
-                        const product = state.cartItems.find((item) => item.cartId === cartID);
-                        if (product) {
-                                state.cartItems = state.cartItems.filter((item) => item.cartId !== cartID);
-                                state.numItemsInCart -= product.amount;
-                                state.cartTotal -= product.price * product.amount;
-                        }
+                        const { cartId } = action.payload;
+                        const product = state.cartItems.find((item) => item.cartId === cartId);
+                        console.log(product);
+                        state.cartItems = state.cartItems.filter((item) => item.cartId !== cartId);
+                        state.numItemsInCart -= product.amount;
+                        state.cartTotal -= product.price * product.amount;
+
                         cartSlice.caseReducers.calculateTotals(state);
 
                         localStorage.setItem("cart", JSON.stringify(state));
@@ -53,8 +53,8 @@ const cartSlice = createSlice({
                         return defaultState;
                 },
                 editItem(state, action) {
-                        const { cartID, amount } = action.payload;
-                        const product = state.cartItems.find((item) => item.cartId === cartID);
+                        const { cartId, amount } = action.payload;
+                        const product = state.cartItems.find((item) => item.cartId === cartId);
                         if (product) {
                                 state.numItemsInCart += amount - product.amount;
                                 state.cartTotal += product.price * (amount - product.amount);

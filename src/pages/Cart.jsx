@@ -18,11 +18,14 @@ export default function Cart() {
                                 <div className="lg:col-span-4 lg:pl-4">
                                         <CartTotal />
                                         {user ? (
-                                                <Link to="/checkout" className="btn btn-primary btn-block mt-8">
+                                                <Link to="/checkout" className="btn btn-primary btn-block mt-8 text">
                                                         Proceed to checkout
                                                 </Link>
                                         ) : (
-                                                <Link to="/login" className="btn btn-primary btn-block mt-8">
+                                                <Link
+                                                        to="/login"
+                                                        className="btn btn-primary btn-block mt-8  text-lg font-bold btn-lg"
+                                                >
                                                         Login
                                                 </Link>
                                         )}
