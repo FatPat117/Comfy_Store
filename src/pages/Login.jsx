@@ -1,8 +1,9 @@
 import React from "react";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FormInput, SubmitBtn } from "../components";
+import { loginUser } from "../features/user";
 import { customFetch } from "../utils";
-
 export default function Login() {
         return (
                 <section className="grid h-screen place-items-center">
@@ -12,7 +13,7 @@ export default function Login() {
                                         label="Email"
                                         type="email"
                                         placeholder="Email"
-                                        name="email"
+                                        name="identifier"
                                         defaultValue={"test@test.com"}
                                 />
                                 <FormInput
@@ -45,8 +46,12 @@ export const action =
                 const data = Object.fromEntries(formData);
                 try {
                         const response = await customFetch.post("/auth/local", data);
+                        toast.success("Login successful");
+                        store.dispatch(loginUser(response.data));
+                        return redirect("/");
                 } catch (error) {
-                        console.log(error);
+                        const errorMessage = error?.response?.data?.error?.message || "Invalid email or password";
+                        toast.error(errorMessage);
+                        return null;
                 }
-                return null;
         };
