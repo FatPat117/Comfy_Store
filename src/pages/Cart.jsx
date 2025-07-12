@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { CartItemList, CartTotal, SectionTitle } from "../components";
 
 export default function Cart() {
-        const user = null;
+        const user = useSelector((state) => state.user.user);
         const numsItemInCart = useSelector((state) => state.cart.numsItemInCart);
 
         if (numsItemInCart === 0) return <SectionTitle title="Your cart is empty" />;
@@ -18,13 +18,16 @@ export default function Cart() {
                                 <div className="lg:col-span-4 lg:pl-4">
                                         <CartTotal />
                                         {user ? (
-                                                <Link to="/checkout" className="btn btn-primary btn-block mt-8 text">
+                                                <Link
+                                                        to="/checkout"
+                                                        className="btn btn-primary btn-block mt-8 text-lg btn-lg"
+                                                >
                                                         Proceed to checkout
                                                 </Link>
                                         ) : (
                                                 <Link
                                                         to="/login"
-                                                        className="btn btn-primary btn-block mt-8  text-lg font-bold btn-lg"
+                                                        className="btn btn-primary btn-block mt-8 text-lg font-bold btn-lg"
                                                 >
                                                         Login
                                                 </Link>
