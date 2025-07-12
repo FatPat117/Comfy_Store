@@ -12,10 +12,13 @@ const getThemefromLocalStorage = () => {
         return theme ? theme : themes.winter;
 };
 
+const getUserFromLocalStorage = () => {
+        const user = localStorage.getItem("user");
+        return user ? JSON.parse(user) : null;
+};
+
 const initialState = {
-        user: {
-                userName: "Pitachiti",
-        },
+        user: getUserFromLocalStorage(),
         theme: getThemefromLocalStorage(),
 };
 
@@ -23,7 +26,14 @@ const userSlice = createSlice({
         name: "user",
         initialState,
         reducers: {
-                loginUser: (state, action) => {},
+                loginUser: (state, action) => {
+                        const user = {
+                                ...action.payload.user,
+                                token: action.payload.jwt,
+                        };
+                        state.user = user;
+                        localStorage.setItem("user", JSON.stringify(user));
+                },
                 logoutUser: (state) => {
                         state.user = null;
                         localStorage.removeItem("user");

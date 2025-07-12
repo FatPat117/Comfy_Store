@@ -22,7 +22,7 @@ export default function Header() {
                                 {user ? (
                                         <div className="flex gap-x-2 sm:gap-x-8 items-center">
                                                 <p className="text-xs sm:text-lg font-bold text-primary">
-                                                        {user.userName}
+                                                        {user.username}
                                                 </p>
                                                 <button
                                                         className="btn btn-sm btn-outline btn-primary text-md font-bold"
