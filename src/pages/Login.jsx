@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Link } from "react-router-dom";
 import { FormInput, SubmitBtn } from "../components";
+import { customFetch } from "../utils";
 
 export default function Login() {
         return (
@@ -36,3 +37,16 @@ export default function Login() {
                 </section>
         );
 }
+
+export const action =
+        (store) =>
+        async ({ request }) => {
+                const formData = await request.formData();
+                const data = Object.fromEntries(formData);
+                try {
+                        const response = await customFetch.post("/auth/local", data);
+                } catch (error) {
+                        console.log(error);
+                }
+                return null;
+        };
