@@ -1,10 +1,28 @@
 import React from "react";
-import { Form, Link, redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FormInput, SubmitBtn } from "../components";
 import { loginUser } from "../features/user";
 import { customFetch } from "../utils";
 export default function Login() {
+        const dispatch = useDispatch();
+        const navigate = useNavigate();
+
+        const loginAsGuestUser = async () => {
+                try {
+                        const response = await customFetch.post("/auth/local", {
+                                identifier: "test@test.com",
+                                password: "secret",
+                        });
+                        dispatch(loginUser(response.data));
+                        toast.success("Welcome guest user");
+                        navigate("/");
+                } catch (error) {
+                        toast.error("Failed to login as guest user");
+                }
+        };
+
         return (
                 <section className="grid h-screen place-items-center">
                         <Form method="POST" className="card w-md bg-base-200 shadow-lg rounded-lg p-8 flex  gap-5">
@@ -27,7 +45,12 @@ export default function Login() {
                                         <SubmitBtn text="Login" />
                                 </div>
 
-                                <button className="btn btn-secondary text-lg rounded-lg h-14 mt-1">Guest User</button>
+                                <button
+                                        className="btn btn-secondary text-lg rounded-lg h-14 mt-1"
+                                        onClick={loginAsGuestUser}
+                                >
+                                        Guest User
+                                </button>
                                 <p className="text-center mt-5 text-lg">
                                         Don't have an account?{" "}
                                         <Link to="/register" className="underline text-primary ">
