@@ -1,11 +1,21 @@
 import React from "react";
-import { redirect } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
-import { OrdersList } from "../components";
+import { OrdersList, PaginationContainer, SectionTitle } from "../components";
 import { customFetch } from "../utils";
 
 export default function Orders() {
-        return <OrdersList />;
+        const { meta } = useLoaderData();
+
+        if (meta.pagination.total < 1) return <SectionTitle title="No orders yet" />;
+
+        return (
+                <>
+                        <SectionTitle title=" Your Orders" />
+                        <OrdersList />
+                        <PaginationContainer />
+                </>
+        );
 }
 
 export const loader =
@@ -26,7 +36,7 @@ export const loader =
                                         Authorization: `Bearer ${user.token}`,
                                 },
                         });
-                        console.log(response);
+
                         return { orders: response.data.data, meta: response.data.meta };
                 } catch (error) {
                         const errorMessage =
