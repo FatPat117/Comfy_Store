@@ -55,7 +55,8 @@ export const action =
                         const errorMessage =
                                 error?.response?.data?.error?.message || "There was an error placing your order";
                         toast.error(errorMessage);
-                        if (error.response.status === 401) return redirect("/login");
+                        if (error.response.status === 401 || error.response.status === 403)
+                                return redirect("/login?message=You%20must%20be%20logged%20in%20to%20checkout");
                         return null;
                 }
         };
