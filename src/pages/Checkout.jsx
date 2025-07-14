@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { redirect } from "react-router-dom";
 import { CartTotal, CheckoutForm, SectionTitle } from "../components";
 
 export default function Checkout() {
@@ -16,3 +17,11 @@ export default function Checkout() {
                 </>
         );
 }
+
+export const loader = (store) => async () => {
+        const user = store.getState().user.user;
+        if (!user) {
+                return redirect("/login?message=You%20must%20be%20logged%20in%20to%20checkout");
+        }
+        return null;
+};

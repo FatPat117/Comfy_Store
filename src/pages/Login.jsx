@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Form, Link, redirect, useNavigate } from "react-router-dom";
+import { Form, Link, redirect, useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FormInput, SubmitBtn } from "../components";
 import { loginUser } from "../features/user";
@@ -8,6 +8,15 @@ import { customFetch } from "../utils";
 export default function Login() {
         const dispatch = useDispatch();
         const navigate = useNavigate();
+
+        const [searchParams] = useSearchParams();
+
+        useEffect(() => {
+                const message = searchParams.get("message");
+                if (message) {
+                        toast.warn(message);
+                }
+        }, [searchParams]);
 
         const loginAsGuestUser = async () => {
                 try {
