@@ -9,9 +9,9 @@ export default function CheckoutForm() {
         return (
                 <Form method="post" className="flex flex-col gap-y-5">
                         <h4 className="font-medium text-xl capitalize">Shipping Information</h4>
-                        <FormInput label="Full Name" type="text" name="name" placeholder="Pitachiti" />
-                        <FormInput label="Phone" type="tel" name="phone" placeholder="+1234567890" />
-                        <FormInput label="Address" type="text" name="address" placeholder="123 Main St" />
+                        <FormInput label="First Name" type="text" name="name" />
+                        <FormInput label="Phone" type="tel" name="phone" />
+                        <FormInput label="Address" type="text" name="address" />
 
                         <div className="mt-4">
                                 <SubmitBtn text="Continue" />
@@ -55,6 +55,7 @@ export const action =
                         const errorMessage =
                                 error?.response?.data?.error?.message || "There was an error placing your order";
                         toast.error(errorMessage);
+                        if (error.response.status === 401) return redirect("/login");
                         return null;
                 }
         };
