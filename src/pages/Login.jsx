@@ -14,7 +14,7 @@ export default function Login() {
         useEffect(() => {
                 const message = searchParams.get("message");
                 if (message) {
-                        toast.warn(message);
+                        toast.warn(message, { autoClose: 2000 });
                 }
         }, [searchParams]);
 
@@ -25,7 +25,9 @@ export default function Login() {
                                 password: "secret",
                         });
                         dispatch(loginUser(response.data));
-                        toast.success("Welcome guest user");
+                        toast.success("Welcome guest user", {
+                                autoClose: 2000,
+                        });
                         navigate("/");
                 } catch (error) {
                         toast.error("Failed to login as guest user");
@@ -78,7 +80,7 @@ export const action =
                 const data = Object.fromEntries(formData);
                 try {
                         const response = await customFetch.post("/auth/local", data);
-                        toast.success("Login successful");
+                        toast.success("Login successful", { autoClose: 2000 });
                         store.dispatch(loginUser(response.data));
                         return redirect("/");
                 } catch (error) {

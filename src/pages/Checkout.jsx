@@ -9,8 +9,8 @@ export default function Checkout() {
         if (cartTotal === 0) return <SectionTitle title="Your Cart is empty" style="text-center" />;
         return (
                 <>
-                        <SectionTitle title="place your order">=</SectionTitle>
-                        <div className="mt-8 grid md:grid-cols-2 items-start">
+                        <SectionTitle title="place your order"></SectionTitle>
+                        <div className="mt-8 grid md:grid-cols-2 items-start gap-x-20">
                                 <CheckoutForm />
                                 <CartTotal />
                         </div>
