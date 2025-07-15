@@ -115,8 +115,10 @@ export default function SingleProduct() {
                 </section>
         );
 }
-export const loader = async ({ params }) => {
-        const { id } = params;
-        const response = await customFetch(`/products/${id}`);
-        return { product: response.data.data };
-};
+export const loader =
+        (QueryClient) =>
+        async ({ params }) => {
+                const { id } = params;
+                const response = await customFetch(`/products/${id}`);
+                return { product: response.data.data };
+        };
