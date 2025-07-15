@@ -115,10 +115,15 @@ export default function SingleProduct() {
                 </section>
         );
 }
+
+const singleProductQuery = (id) => {
+        return { queryKey: ["singleProduct", id], queryFn: () => customFetch(`/products/${id}`) };
+};
+
 export const loader =
-        (QueryClient) =>
+        (queryClient) =>
         async ({ params }) => {
                 const { id } = params;
-                const response = await customFetch(`/products/${id}`);
+                const response = await queryClient.ensureQueryData(singleProductQuery(id));
                 return { product: response.data.data };
         };
