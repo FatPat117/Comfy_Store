@@ -11,8 +11,13 @@ export default function Landing() {
         );
 }
 
-export const loader = (queryClient) => async () => {
-        const response = await customFetch.get("/products?featured=true");
+const featuredProductsQuery = {
+        queryKey: ["featuredProducts"],
+        queryFn: () => customFetch("/products?featured=true"),
+};
 
-        return { products: response.data.data };
+export const loader = (queryClient) => async () => {
+        const response = await queryClient.ensureQueryData(featuredProductsQuery);
+        const products = response.data.data;
+        return { products };
 };
