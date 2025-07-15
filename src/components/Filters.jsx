@@ -7,7 +7,6 @@ import FormSelect from "./FormSelect";
 
 export default function Filters() {
         const { query, meta } = useLoaderData();
-        console.log(query);
         const { search, category, company, sort, price, shipping } = query;
 
         return (

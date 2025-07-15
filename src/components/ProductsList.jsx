@@ -8,7 +8,6 @@ export default function ProductsList() {
         return (
                 <div className="mt-12 grid gap-6">
                         {products.map((product) => {
-                                console.log(product);
                                 return (
                                         <Link
                                                 to={`/products/${product.id}`}

@@ -21,7 +21,7 @@ export default function CheckoutForm() {
 }
 
 export const action =
-        (store) =>
+        (store, queryClient) =>
         async ({ request }) => {
                 const formData = await request.formData();
                 const data = Object.fromEntries(formData);
@@ -49,13 +49,15 @@ export const action =
                                 }
                         );
                         store.dispatch(clearCart());
+                        // remove query
+                        queryClient.removeQueries(["orders"]);
                         toast.success("Order placed successfully");
                         return redirect("/orders");
                 } catch (error) {
                         const errorMessage =
                                 error?.response?.data?.error?.message || "There was an error placing your order";
                         toast.error(errorMessage);
-                        if (error.response.status === 401 || error.response.status === 403)
+                        if (error?.response?.status === 401 || error?.response?.status === 403)
                                 return redirect("/login?message=You%20must%20be%20logged%20in%20to%20checkout");
                         return null;
                 }

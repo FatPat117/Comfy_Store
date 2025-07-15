@@ -18,8 +18,21 @@ export default function Orders() {
         );
 }
 
+const ordersQuery = (params, user) => {
+        return {
+                queryKey: ["orders", user.username, params.page ? parseInt(params.page) : 1],
+                queryFn: () =>
+                        customFetch("/orders", {
+                                params,
+                                headers: {
+                                        Authorization: `Bearer ${user.token}`,
+                                },
+                        }),
+        };
+};
+
 export const loader =
-        (store) =>
+        (store, queryClient) =>
         async ({ request }) => {
                 const user = store.getState().user.user;
 
@@ -30,12 +43,7 @@ export const loader =
                 const params = Object.fromEntries([...new URL(request.url).searchParams.entries()]);
 
                 try {
-                        const response = await customFetch.get("/orders", {
-                                params,
-                                headers: {
-                                        Authorization: `Bearer ${user.token}`,
-                                },
-                        });
+                        const response = await queryClient.ensureQueryData(ordersQuery(params, user));
 
                         return { orders: response.data.data, meta: response.data.meta };
                 } catch (error) {
