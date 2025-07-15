@@ -15,6 +15,27 @@ export default function Products() {
         );
 }
 
+const allProductsQuery = (queryParams) => {
+        const { search, category, company, sort, price, shipping, page } = queryParams;
+
+        return {
+                queryKey: [
+                        "products",
+                        search ?? "",
+                        category ?? "all",
+                        company ?? "all",
+                        sort ?? "a-z",
+                        price ?? 100000,
+                        shipping ?? false,
+                        page ?? 1,
+                ],
+                queryFn: () =>
+                        customFetch("/products", {
+                                params: queryParams,
+                        }),
+        };
+};
+
 export const loader =
         (queryClient) =>
         async ({ request }) => {
@@ -28,7 +49,7 @@ export const loader =
                 // const sort = params.get("sort") || "";
                 // const page = params.get("page") || 1;
 
-                const response = await customFetch.get("/products", { params: query });
+                const response = await queryClient.ensureQueryData(allProductsQuery(query));
                 const products = response.data.data;
                 const meta = response.data.meta;
 
